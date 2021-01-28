@@ -8,8 +8,12 @@ setwd("~/Desktop/")
 ### NAME OF .CSV FILE
 df.name <- "DD.Data.csv"
 
+### DATA TYPE (string or numeric)
+
+dd.type <- "numeric"
+
 ### NAME OF ID VARIABLE
-id.name <- "participant_id"
+id.name <- "ID"
 
 ### DD100 & DD1000 VARIABLE NAMES (CHANGE IF REQUIRED)
 variable.names <- c("dd3weeks100","dd2years100","dd1day100","dd8years100","dd4months100",
@@ -32,6 +36,21 @@ variable.names <- c("dd3weeks100","dd2years100","dd1day100","dd8years100","dd4mo
 DD <- read.csv(df.name)
 ### SUBSET VARIABLES
 DD <- DD[c(id.name,variable.names)]
+
+#####################################################################################################
+##### --- CHANGE TO NUMERIC IF RESPONSES == STRING VALUE
+
+if(dd.type=="string") {
+  for(i in 1:ncol(DD)) {
+    for(j in 1:nrow(DD)) {
+      if(grepl("in",DD[j,i])==T) {
+        DD[j,i] <- 1
+      } else if(grepl("ow",DD[j,i])==T) {
+        DD[j,i] <- 2
+      }
+    }
+  }
+}
 
 ########### ----------  DELAY DISCOUNTING $100
 #####################################################################################################
