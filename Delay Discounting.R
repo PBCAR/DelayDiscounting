@@ -15,7 +15,12 @@ dd.type <- "numeric"
 ### NAME OF ID VARIABLE
 id.name <- "ID"
 
-### DD100 & DD1000 VARIABLE NAMES (CHANGE IF REQUIRED)
+#####################################################################################################
+##### --- IMPORT DATA
+
+DD <- read.csv(df.name)
+
+### DD100 & DD1000 VARIABLE NAMES (PROCESSES THESE NAMED VARIABLES SPECIFICALLY)
 variable.names <- c("dd3weeks100","dd2years100","dd1day100","dd8years100","dd4months100",
                     "dd4days100","dd4hours100","dd18years100","dd4years100","dd8months100",
                     "dd2months100","dd1_5weeks100","dd2days100","dd9hours100","dd2hours100",
@@ -30,10 +35,6 @@ variable.names <- c("dd3weeks100","dd2years100","dd1day100","dd8years100","dd4mo
                     "dd1week1000","dd3days1000","dd1_5days1000","dd12hours1000","dd6hours1000",
                     "dd3hours1000","dd1hour1000","ddcontrol100","ddcontrol1000")
 
-#####################################################################################################
-##### --- IMPORT DATA
-
-DD <- read.csv(df.name)
 ### SUBSET VARIABLES
 DD <- DD[c(id.name,variable.names)]
 
